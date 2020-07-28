@@ -1,0 +1,11 @@
+<%=form_tag  "", action: "search", method: :get do %>
+  <div class="form-group">
+    <div class="search-field">
+      <%= text_field_tag :query, params[:query], placeholder: "Search for articles..." , class:"form-control
+     search-input" %>
+    </div>
+    <div class="search-btn-field">
+      <button type="submit" class="btn btn-success search-btn fa fa-search" name="commit"></button>
+    </div>
+  </div>
+<% end %>

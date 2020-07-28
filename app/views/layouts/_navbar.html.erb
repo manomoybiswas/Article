@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-md">
+  <div class="container nav-container">
+    <a class="navbar-brand" href=<%=root_path%>>Article</a>
+    <button 
+      class="navbar-toggler" type="button" data-toggle="collapse"   data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav text-center mr-auto">
+        <li class="nav-item active">
+          <%= link_to "Home", root_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About Us", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact Us", "#", class: "nav-link" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav text-center ml-auto">
+        <li class="navbar-searchbar">
+          <%= render "layouts/search"%>
+        </li>
+        <% unless current_user.present? || ["new"].include?(params[:action])%>
+          <li class="authentication">
+            <div class="sign-in">
+              <%= link_to " SIGN IN", new_session_path, class:"btn sign-in-btn btn-success fa fa-sign-in " %>
+            </div>
+            <div class="sign-up">
+              <%= link_to " SIGN UP", new_user_path, class:"btn sign-up-btn btn-success fa fa-sign-out" %>
+            </div>
+          </li>
+          <li class="profile-menu sign-in-drop-down text-center">
+            <div class="btn-group">
+              <div class="sign-in">
+                <%= link_to " SIGN IN", new_session_path, class:"btn btn-sm sign-in-btn btn-success fa fa-sign-in " %>
+              </div>
+              <a role="button" class="btn btn-sm btn-warning dropdown-toggle dropdown-toggle-split"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+                <span class="sr-only">Toggle Dropdown</span>
+              </a>
+              <div class="dropdown-menu logout-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+                <div class="sign-up">
+                  <%= link_to " SIGN UP", new_user_path, class:"btn sign-up-btn btn-success fa fa-sign-out" %>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+        <% if current_user.present? %>
+          <li class="profile-menu text-center">
+            <a class="dropdown-toggle btn login-name nav-link" href="#"
+               id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Hi, <%= current_user.name %>
+            </a>
+            <div
+              class="dropdown-menu logout-menu dropdown-menu-right text-center" aria-labelledby="navbarDropdown">
+              <div class="dropdown-item">
+                <%= link_to " Profile", user_path(current_user.id), class:"btn fa fa-user" %>
+              </div>
+              <div class="dropdown-item">
+                <%= link_to "Dashboard", overview_path, class:"icon-dashboard" %>
+              </div>
+              <div class="dropdown-item">
+                <%= link_to "Logout", session_path(current_user), method:"delete", class:"btn btn-danger fa fa-sign-out" %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="mobile-searchbar">
+  <%= render "layouts/search" %>
+</div>
+
+
+
+
+
+

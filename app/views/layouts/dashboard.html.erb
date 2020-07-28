@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Manomoy Biswas">
-    <title>Article</title>
+    <title>KreetiArticle</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,10 +18,17 @@
       <%= render "layouts/alert" %>
     </header>
     <main>
-      <%= yield %>
+      <div class="dashboard-menu">
+        <%= render "layouts/dashboard_menu" %>
+      </div>
+      <div class="work-area">
+        <%= yield %>
+      </div>
     </main>
     <footer>
       <%= render "layouts/footer" %>
     </footer>
   </body>
 </html>
+
+

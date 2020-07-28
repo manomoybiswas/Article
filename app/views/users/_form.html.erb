@@ -1,0 +1,64 @@
+<%= form_for @user do |form| %>
+  <div class="page-wrapper">
+    <div class="wrapper signup-wrapper">
+      <div class="card">
+        <div class="card-body">
+          <% if["edit"].include?(params[:action])%>
+            <h1 class="title text-center"> UPDATE USER</h1>
+          <% else %>
+            <h1 class="title text-center"> Sign Up</h1>
+          <% end %>
+          <br />
+          <div class="form-group row">
+            <%= form.label :name, for: "name", class:"col-12 col-sm-3 col-md-3 col-form-label"%>
+            <div class="col-12 col-sm-9 col-md-9">
+              <%= form.text_field :name,for: "name", class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter name", required: true %>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <%= form.label :email, for: "email", class:"col-12 col-sm-3 col-md-3 col-form-label"%>
+            <div class="col-12 col-sm-9 col-md-9">
+              <%= form.email_field :email,for: "email", class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Enter Email ID", required: true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :mobile_no, for: "Mobile number", class:"col-12 col-sm-3 col-md-3 col-form-label"%>
+            <div class="col-12 col-sm-9 col-md-9">
+              <%= form.text_field :mobile, for: "Mobile number", class: "form-control", autofocus: true, autocomplete: "mobile", placeholder: "Enter 10 digit mobile number", required: true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :password, for: "password", class:"col-12 col-sm-3 col-md-3 col-form-label" %>
+            <div class="col-12 col-sm-9 col-md-9">
+              <%= form.password_field :password, for: "password", class: "form-control", autocomplete: "current-password", placeholder: "Enter Password", required: true %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :confirm_password, for: "password", class:"col-12 col-sm-3 col-md-3 col-form-label" %>
+            <div class="col-12 col-sm-9 col-md-9">
+              <%= form.password_field :conform_password, for: "confirm_password", class: "form-control", autocomplete: "current-password", placeholder: "Repeat Password", required: true %>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-12 text-center">
+              <% if["edit"].include?(params[:action])%>
+                <%= form.submit "UPDATE", class:"btn btn-success btn-lg" %>
+              <% else %>
+                <%= form.submit "SIGN UP", class:"btn btn-primary btn-lg" %>
+              <% end %>
+            </div>
+          </div>
+          <br />
+          <% if["new"].include?(params[:action])%>
+            <div class="row text-center">
+              <div class="col-12"><p class="reg-text text-center">Already a member?</p></div>
+              <div class="col-12"><%= link_to "SIGN IN", new_session_path, class: "btn btn-success btn-md" %></div>
+            </div>
+          <% end %>
+        </div>
+      </div> 
+    </div>
+  </div>
+<% end %>
