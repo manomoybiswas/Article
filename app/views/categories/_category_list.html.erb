@@ -1,0 +1,25 @@
+<section class="category-list">
+  <div class="category-header">
+    <p class="category-title">Categories</p>
+  </div>
+  <div class="category-item">
+    <%= link_to "All", filtered_posts_posts_path(id: 0), class: "category-item-title" %>
+  </div>
+  <% @categories.each do |category| %>
+    <div class="category-item">
+      <%= link_to category.category_name, filtered_posts_posts_path(id: category.id), class: "category-item-title" %>
+    </div>
+  <% end %>
+</section>
+<section class="mobile-categoryList dropright">
+  <a class="dropdown-toggle btn btn-primary"
+    href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    CATEGORIES
+  </a>
+  <div class="dropdown-menu category-list" aria-labelledby="categoryDropdown">
+    <% @categories.each do |category| %>
+      <%= link_to category.category_name, filtered_posts_posts_path(id: category.id), class: "dropdown-item" %>
+      <div class="dropdown-divider"></div>
+    <% end %>
+  </div>
+</section>

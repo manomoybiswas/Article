@@ -1,0 +1,24 @@
+<div class="card-body">
+  <h2 class="title text-left">Comments</h2>
+  <%= form_for [@post, @comment] do |form| %>
+    <div class="form-group row">
+      <%= form.label :comment_title, for: "article name", class:"col-sm-2 col-form-label"%>
+      <div class="col-sm-10">
+        <%= form.text_field :comment_title, for: "comment title", class: "form-control", autofocus: true, placeholder: "Enter comment title", required: true %>
+      </div>
+    </div>
+          
+    <div class="form-group row">
+      <%= form.label :comment_body, for: "comment", class:"col-sm-2 col-form-label"%>
+      <div class="col-sm-10">
+        <%= form.text_area :comment_body,for: "comment", class: "form-control", autofocus: true, placeholder: "Enter comment Body" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-right">
+        <strong><%= form.submit "Comment", class:"btn btn-primary" %></strong>
+      </div>
+    </div>
+  <% end %>
+  <br />
+</div>

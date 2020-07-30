@@ -1,0 +1,24 @@
+<div class="page-wrapper">
+  <div class="article-wrapper">
+    <div class="card card-6">
+      <div class="card-body">
+        <div class="article-image-box">
+          <%= image_tag @post.image.url,class: "banner-image" %>
+        </div>
+        <div class="article">
+          <h1 class="article-title"><%= @post.post_name%></h1>
+          <small class="comment-user"> by <%= @post.user.name%>, <%= DateTime.parse(@post.updated_at.to_s).strftime("%d %b,%Y %I:%M %p") %></small>
+          <p class="article-description"><%= @post.description%></p>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <%# link_to " Print Article",print_pdf_articles_path(article_id: @post.id, format: "pdf"), target: "_blank", class: "fa fa-print btn btn-outline-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <%= render "comments/form"%>
+    <%= render "comments/commentlist" %>
+  </div>
+</div>

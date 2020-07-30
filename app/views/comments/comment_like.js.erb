@@ -1,0 +1,6 @@
+<% if current_user.liked? @comment %>
+$('#comment_like_<%=@comment.id%>').addClass('liked');
+<% else %>
+$('#comment_like_<%=@comment.id%>').removeClass('liked');
+<% end %>
+$('#comment_<%=@comment.id%>').html('<%= @comment.get_up_votes.size %>')

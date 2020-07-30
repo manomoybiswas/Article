@@ -1,4 +1,4 @@
-<%=form_tag  "", action: "search", method: :get do %>
+<%=form_tag  "search_posts_path", action: "search", method: :get do %>
   <div class="form-group">
     <div class="search-field">
       <%= text_field_tag :query, params[:query], placeholder: "Search for articles..." , class:"form-control

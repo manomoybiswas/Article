@@ -1,3 +1,43 @@
 <section id="banner">
   <%= render "home/banner" %>
 </section>
+<div class="page-wrapper p-t-0">
+  <div class="article-wrapper">
+    <div class="row no-gutters">
+      <div class="col-12 col-sm-4 col-md-4 col-lg-3 ">
+        <%= render "categories/category_list" %>
+      </div>
+      <div class="col-12 col-sm-8 col-md-8 col-lg-9">
+        <div class="card card-6">
+          <div class="card-body">
+            <div class="task-list">
+              <div class="row">
+                <% if current_user.present? %>
+                  <div class="col-5 col-md-7 col-lg-8 text-left">
+                      <%= link_to "Create Post", new_post_path, class: "btn btn-primary", data: {turbolinks: false,
+                                                                                                  disable_with: "wait..." } %>
+                  </div>
+                  <div class="col-7 col-md-5 col-lg-4 text-right">
+                    <%=form_tag(root_path, action:"index", method: :get) do %>
+                      <div class="form-group row">
+                        <% filters=["Liked", "Non liked"]%>
+                        <div class="fa fa-filter col-1 text-center"></div>
+                        <div class="col-10 text-right">
+                          <%= select_tag(:filters, options_for_select(filters, params[:filters]), prompt:"All", class:"form-control custom-select d-block w-100 text-center") %>
+                        </div>
+                      </div>  
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+              <section id="top">
+                <%= render "posts/post_list"%>
+              </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<% @comments.each do |comment| %>
+  <div class="comment">
+    <h1 class="comment-title"><%= comment.comment_title%></h1>
+    <small class="comment-user"> by <%= comment.user.name%>, <%= DateTime.parse(comment.updated_at.to_s).strftime("%d %b,%Y %I:%M %p") %></small>
+    <div>
+      <p class="comment-body"><%= simple_format(comment.comment_body) %></p>
+      <div class="action-row">
+        <div class="row">
+          <div class="col-3">
+            <% if current_user %>
+              <%= link_to comment_like_comment_path(comment.id), method: :put, remote: :true do %>
+                <div>
+                  <span>
+                    <p>
+                      <i class="like-btn
+                        <% if current_user&.liked? comment %>
+                          liked
+                        <% end %>
+                        fa fa-thumbs-up" id="comment_like_<%= comment.id %>">
+                      </i>
+                    </p>
+                  </span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="col-2 text-center">
+            <% if current_user && current_user.id == comment.user.id %>
+              <%= link_to "", edit_comment_path(comment), class: "fa fa-edit edit-comment"%>
+            <% end %>
+          </div>
+          <div class="col-2 text-center">
+            <% if current_user && current_user.id == comment.user.id %>
+              <%= link_to "", comment_path(comment), data: {confirm: "Are you sure?" }, method: :delete, class: "fa fa-trash edit-comment"%>
+            <% end %>
+          </div>
+          <div class="col-5 text-right">
+            <span><span class="like-count" id="comment_<%= comment.id %>"><%= comment.get_upvotes.size %></span> Likes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

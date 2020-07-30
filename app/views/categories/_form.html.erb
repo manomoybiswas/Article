@@ -1,0 +1,23 @@
+<%= form_for @category do |form| %>
+  <% if @category.errors.any? %>
+    <% @category.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <%end%>
+  <%end%>
+
+  <div class="form-group row text-center">
+    <div class = "col-10">
+      <div class="row">
+        <%= form.label :name,"Category title", for: "title", class:"col-4 col-md-3 col-lg-2 col-form-label"%>
+        <%= form.text_field :category_name, class: "col-8 col-md-9 col-lg-10 form-control", autofocus: true, placeholder: "Enter category title", required: true %>
+      </div>
+    </div>
+    <div class = "col-2">
+      <% if["edit"].include?(params[:action])%>
+        <%=form.submit( "Update",{ class: "btn btn-success btn-lg", data:{disable_with: "Updating..."}})%>
+      <% else %>
+        <%=form.submit( "Add",{ class: "btn btn-success btn-md btn-block", data:{disable_with: "Adding.."}})%>
+      <% end %>
+    </div>
+  </div>
+<%end%>

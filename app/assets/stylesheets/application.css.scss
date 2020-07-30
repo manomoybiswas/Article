@@ -7,12 +7,13 @@
 @import "bootstrap";
 @import "font-awesome";
 @import "./users.scss";
+@import "./posts.scss";
 
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  // font: 400 14px/1.5 "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font: 400 14px/1.5 "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 html{
   overflow-y: scroll;
@@ -23,7 +24,7 @@ html::-webkit-scrollbar {
   display: none;
 }
 main{
-  min-height: calc(100vh - 50px - 30px);
+  min-height: calc(100vh - 50px - 45px - 30px);
 }
 a, a:hover{
   text-decoration: none;
@@ -123,6 +124,7 @@ a, a:hover{
   display: inline-block;
   width: 20%;
   margin-left: -5px;
+
 }
 .search-btn{
   width: 100%;
@@ -174,9 +176,69 @@ a, a:hover{
   width: 100%;
   padding-top: 20px;
 }
+.p-t-0{
+  padding-top: 0;
+}
 .wrapper{
   width: calc(100% - 10px);
   margin: auto;
+}
+.login-wrapper{
+  max-width: 700px;
+}
+
+.card{
+  margin: 10px 0;
+}
+.fa-edit,
+.fa-trash,
+.fa-eye,
+.fa-thumbs-up,
+.fa-thumbs-down,
+.fa-share,
+.fa-filter{
+  font-size: 32px;
+}
+.liked-btn, .fa-thumbs-up{
+  color: #afaeae;
+}
+.liked, .fa-thumbs-up:hover{
+  color: #007bff;
+}
+.fa-edit{
+  color: #0f0bdd;
+} 
+.fa-trash{
+  color: #fa0505;
+}
+a.morelink {
+	text-decoration:none;
+	outline: none;
+}
+.morecontent span {
+	display: none;
+}
+.dashboard-menu{
+  display: none;
+}
+.mobile-dashboard-menu{
+  display: block;
+  padding: 10px 0;
+  margin: 0 15px;
+  border-bottom: 2px solid;
+  height: 55px;
+  .create-btn{
+    height: 35px;
+    font-size: 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    box-shadow: 2px 5px 6px 0px rgba(0, 0, 0, 0.5);
+  }
+}
+.work-area{
+  margin: 0 15px;
+  padding: 10px 0;
+  height: calc(100vh - 50px - 45px - 55px - 30px);
 }
 .copyright{
   margin: 0;
@@ -192,7 +254,6 @@ a, a:hover{
   .banner{
     height: 300px;
   }
-  
 }
 @media screen and (min-width: 768px){
   main{
@@ -203,6 +264,10 @@ a, a:hover{
     z-index: 999;
     background-color: rgba(52, 58, 64, 0.9);
     box-shadow: 0 5px 3px 0 rgba(0,0,0,0.3);
+  }
+  .navbar-brand, .navbar-brand:hover{
+    padding-top: 10px;
+    cursor: pointer;
   }
   #navbarSupportedContent{
     position: relative;
@@ -242,9 +307,12 @@ a, a:hover{
     width: 215px;
     padding: 20px 10px 0;
   }
+  .search-btn-field{
+    padding-top: 1px;
+  }
   .profile-menu{
     width: auto;
-    padding-top: 20px;
+    padding-top: 15px;
     background-color: transparent;
   }
   .profile-menu:hover{
@@ -280,19 +348,23 @@ a, a:hover{
   .signup-wrapper{
     max-width: 700px;
   }
+  .mobile-dashboard-menu{
+    display: none;
+  }
+  .dashboard-menu{
+    display: block;
+    width: 300px;
+    position: absolute;
+    top: 55px;
+    min-height: calc(100vh - 55px - 30px);
+    background-color: #000000c4;
+  }
   .dashboard-header{
     padding: 20px 15px 10px;
     .header-text{
       color: #ffffff94;
       font-weight: bolder;
     }
-  }
-  .dashboard-menu{
-    width: 300px;
-    position: absolute;
-    top: 55px;
-    min-height: calc(100vh - 55px - 30px);
-    background-color: #000000c4;
   }
   .dashboard-item{
     border: 1px 0 1px 1px solid #ffffff;
@@ -352,6 +424,19 @@ a, a:hover{
   }
   .work-area::-webkit-scrollbar {
     display: none;
+  }
+  .create-btn-section{
+    text-align: center;
+  }
+  .create-btn{
+    width: 150px;
+    border-radius: 50px;
+    margin: 10px auto;
+    font-size: 20px;
+    text-transform: uppercase;
+    height: 50px;
+    padding-top: 15px;
+
   }
 }
 @media screen and (min-width: 992px){

@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Manomoy Biswas">
-    <title>KreetiArticle</title>
+    <title>Article</title>
+    <%= favicon_link_tag "icon.png"%>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,12 +19,7 @@
       <%= render "layouts/alert" %>
     </header>
     <main>
-      <div class="dashboard-menu">
-        <%= render "layouts/dashboard_menu" %>
-      </div>
-      <div class="work-area">
-        <%= yield %>
-      </div>
+      <%= render "layouts/dashboard_menu" %>
     </main>
     <footer>
       <%= render "layouts/footer" %>

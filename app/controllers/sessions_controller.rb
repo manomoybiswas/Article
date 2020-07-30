@@ -29,6 +29,7 @@ class SessionsController < ApplicationController
 
   def new
     return redirect_to root_path, flash: { warning: "Already logged in" } if current_user.present?
+    @session = User.new
   end  
 
   private

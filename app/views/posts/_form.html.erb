@@ -1,0 +1,50 @@
+<%= form_for @post, html: { multipart: true} do |form| %>
+  <div class="page-wrapper">
+    <div class="article-wrapper">
+      <div class="card">
+        <div class="card-body">
+          <% if["edit"].include?(params[:action])%>
+            <h1 class="title text-center"> UPDATE ARTICLE</h1>
+          <% else %>
+            <h1 class="title text-center"> CREATE ARTICLE</h1>
+          <% end %>
+          <br />
+          <div class="form-group row">
+            <%= form.label :category, "Category", for: "post category", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"%>
+            <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+              <%= form.select :category_id, options_from_collection_for_select(Category.all.order("category_name ASC"), :id, :category_name, form.object.category_id), { prompt: "Choose..." }, {autofocus: true, required: true, class:"custom-select d-block w-100"} %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :post_name, for: "post name", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"%>
+            <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+              <%= form.text_field :post_name, for: "post name", class: "form-control", autofocus: true, placeholder: "Enter Article title", required: true %>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <%= form.label :description, for: "description", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"%>
+            <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+              <%= form.text_area :description,for: "description", rows: "20", cols: "200", class: "form-control description-field", autofocus: true, placeholder: "Enter description" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <%= form.label :image, for: "post picture", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label"%>
+            <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+              <%= form.file_field :image, for: "article image", class: "form-control"%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <% if["edit"].include?(params[:action])%>
+                <%= form.submit "UPDATE", class:"btn btn-success btn-lg" %>
+              <% else %>
+                <%= form.submit "CREATE", class:"btn btn-primary btn-lg" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

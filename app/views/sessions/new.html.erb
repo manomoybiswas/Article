@@ -1,6 +1,6 @@
 <%= form_for :login, url: :sessions do |form| %>
   <div class="page-wrapper">
-    <div class="wrapper">
+    <div class="wrapper login-wrapper">
       <div class="card">
         <div class="card-body">
           <h1 class="title text-center"> LOGIN</h1>
@@ -18,7 +18,7 @@
           </div>
           <div class="row">
             <div class="col-12 text-center">
-              <strong><%= form.submit "LOGIN", class:"btn btn-primary" %></strong>
+              <strong><%= form.submit "LOGIN", class:"btn btn-primary btn-lg" %></strong>
             </div>
           </div>
         </div>
