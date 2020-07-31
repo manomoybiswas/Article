@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :likes
   has_many :comments
 
+  mount_uploader :avater, AvaterUploader
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_PHONE_REGEX=/\A[6-9][0-9]{9}\z/.freeze
 

@@ -49,6 +49,131 @@
     text-transform: uppercase;
   }
 }
+.overview-wrapper{
+  background-color: rgba(147, 148, 155, 0.418);
+  min-height: calc(100vh - 55px - 30px);
+  margin-top: -10px;
+  padding: 5px 15px;
+  h3{
+    line-height: 30px;
+  }
+}
+.overview-header{
+  margin-bottom: 30px;
+  height: 60px;
+  padding-top: 20px;
+}
+.page-title{
+  font-size: 18px;
+  font-weight: bold;
+}
+.white-box {
+  background: #fff;
+  padding: 25px 25px 20px;
+  margin-bottom: 20px;
+}
+.box-title{
+  font-size: 20px;
+  font-weight: bolder;
+}
+.div-inline {
+  // padding-left: 10px;
+  padding-top: 20px;
+  // margin-left: -5px;
+}
+.overview-icon{
+  display: inline-block;
+  // width: 67px;
+  // height: 30px;
+  // vertical-align: top;
+  width: 67px;
+  height: 30px;
+  font-size: 32px;
+}
+.count{
+  // display: inline-block;
+  float: right;
+  .counter{
+    font-size: 24px;
+    font-weight: bolder;
+  }
+}
+.comment-center {
+  margin: 0 -25px;
+  .comment-body {
+    border-bottom: 1px solid rgba(120,130,140,.13);
+    display: table;
+    width: 100%;
+    height: 172px;
+    padding: 12px 25px;
+  }
+  .comment-body:nth-child(3){
+    border-bottom: 0;
+  }
+  .post-img{
+    width: 120px;
+    img{
+      height: 120px;
+    }
+  }
+  .user-img{
+    width: 60px;
+  }
+  .user-img, .post-img {
+    display: table-cell;
+    position: relative;
+    margin: 0 10px 0 0;
+    img {
+      width: 100%;
+    }
+    .img-circle {
+      border-radius: 50%;
+    }
+  }
+  .mail-contnet {
+    display: table-cell;
+    padding-left: 15px;
+    vertical-align: top;
+    h5{
+      height: 29px;
+      display: block;
+      display: -webkit-box;
+      max-width: 100%;
+      margin: 0 auto;
+      font-size: 22px;
+      line-height: 1.2;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: justify;
+    }
+    .mail-desc {
+      font-size: 14px;
+      display: block;
+      margin: 15px 0;
+      line-height: 25px;
+      color: #848a96;
+      overflow: hidden;
+      max-height: 52px;
+      text-overflow: ellipsis;
+    }
+  }
+  .time {
+    display: inline-block;
+    font-size: 12px;
+    color: #98a6ad;
+  }
+}
+.p-t-10 {
+  padding-top: 10px !important;
+}
+white-box .box-title {
+  margin: 0 0 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 16px;
+}
 
 @media screen and (min-width: 576px){
   .mobile-categoryList{
