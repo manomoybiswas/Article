@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       else
         render "edit", flash: { danger: "Something went wrong"}
       end
-    elsif @user.id == current_user.id
+    elsif current_user.admin || @user.id == current_user.id
       @user.name = user_params[:name] if user_params[:name]
       @user.dob = user_params[:dob] if user_params[:dob]
       @user.mobile = user_params[:mobile] if user_params[:mobile]
