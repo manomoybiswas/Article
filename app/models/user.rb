@@ -2,9 +2,9 @@ class User < ApplicationRecord
   acts_as_voter
   has_secure_password
   
-  has_many :post
-  has_many :likes
-  has_many :comments
+  has_many :post, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   mount_uploader :avater, AvaterUploader
 
