@@ -53,7 +53,7 @@
             <a class="dropdown-toggle btn login-name nav-link" href="#"
                id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.avater? %>
-                <%= image_tag current_user.avater.url(:thumb) ,class: "profile-circle"%>
+                <%= image_tag current_user.avater.url ,class: "profile-circle"%>
               <% else %>
                 <%= image_tag "dummy.jpg", class:"blank-circle"%> 
               <% end %>

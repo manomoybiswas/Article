@@ -7,9 +7,9 @@
           <div class="row">
             <div class= "col-12 text-center">
               <% if current_user.avater? %>
-                <%= image_tag current_user.avater.url(:small) ,class: "img-circle"%>
+                <%= image_tag current_user.avater.url ,class: "profile-img-circle"%>
               <% else %>
-                <%= image_tag "dummy.jpg", class:"img-circle"%> 
+                <%= image_tag "dummy.jpg", class:"profile-img-circle"%> 
               <% end %>
             </div>
             <div class="col-12 text-center">

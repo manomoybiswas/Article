@@ -8,12 +8,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      login(@user.id)
-      if @user.admin
-        redirect_to overview_path, flash: { success: "Login Successful" }
-      else
-        redirect_to root_path, flash: { success: "Login Successful" }
-      end
+      login(@user)
+      redirect_to root_path, flash: { success: "You are Successfully Signed up and login Successful" }
     else
       render "new", flash: { danger: "Something went wrong" }
     end
