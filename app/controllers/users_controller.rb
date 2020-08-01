@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, only: [:destroy, :edit, :index, :show, :update]
   before_action :check_user_is_admin, only: [:index]
-  before_action :set_user, only: [:edit, :show, :update]
+  before_action :set_user, only: [:edit, :destroy, :show, :update]
 
   def create
     @user = User.new(user_params)
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def destroy
     return unless current_user.admin
     return redirect_to request.referrer, flash: {success: "User record deleted successfully."} if @user.destroy
-    redirect_to request.referrer, flash: {success: "Something went wrong. Please try again."}
+    redirect_to request.referrer flash: {success: "Something went wrong. Please try again."}
   end
 
   def edit
