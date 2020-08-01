@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+  <div class="col-12 col-md-10 col-lg-9 col-xl-7">
+    <div class="white-box">
+      <h3 class="box-title text-center">Search Result</h3>
+      <div class="comment-center p-t-10">
+        <% if @posts.present? %>
+          <% @posts.each do |post| %>
+            <div class="comment-body">
+              <div class="post-img"> 
+                <%= image_tag post.image.url, class: "img-circle", alt: "image#{post.id}" %>
+              </div>
+              <div class="mail-contnet">
+                <h5><%= post.post_name %></h5>
+                <span class="time"><%= DateTime.parse(post.created_at.to_s).strftime("%I:%M %p %d %b,%Y") %></span>
+                <br />
+                <span class="mail-desc"><%= post.description %></span>
+              </div>
+            </div>  
+            <div class="row action-row">
+          <div class="col-3 text-right">
+            <% if current_user %>
+              <%= link_to like_post_path(post), method: :put, remote: :true do %>
+                <div>
+                  <span><p><i class="like-btn
+                  <% if current_user &.liked? post %>
+                    liked
+                  <% end %>
+                  fa fa-thumbs-up" id="like_<%=post.id %>"></i></p></span>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+            <div class="col-3 text-center">
+              <% if current_user.present? && (current_user.admin || post.user_id == current_user.id) %>
+                <%= link_to "", edit_post_path(post), class: "fa fa-edit" %>
+              <% end %>
+            </div>
+          <div class="col-6 text-right">
+            <span><span class="like-count" id="article_<%=post.id%>"><%= post.get_upvotes.size
+            %></span> Likes,</span>
+            <%= link_to post_path(post.id), class: "article-link" do %>
+              <span class="comment-count"><%= post.comments.count%> Comments</span>
+            <% end %>
+          </div>
+        </div>   
+          <% end %>
+        <% else %>
+            <div class="comment-body">
+              <h5 class="text-center">No post availavle</h5>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

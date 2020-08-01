@@ -1,1 +1,93 @@
-<%= render "users/form" %>
+<%= form_for @user do |form| %>
+  <div class="row align-items-center sign-up-row justify-content-center no-gutters">
+  <div class="col-12 col-md-6 col-lg-5 col-xl-4 signup-img-col">
+    <div class="white-box sign-up-box">
+      <div class="image-box">
+        <%= image_tag "sign_up.jpg", alt: "signup_image", class: "signup-img" %>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 col-lg-7 col-xl-6">
+    <div class="white-box sign-up-box">
+      <% if["edit"].include?(params[:action])%>
+        <h1 class="title text-center"> UPDATE USER</h1>
+      <% else %>
+        <h1 class="title text-center"> SIGN UP</h1>
+      <% end %>
+      <br />
+      <% if @user.errors.any? %>
+        <% @user.errors.full_messages.each do |msg| %>
+          <div class="alert alert-danger"><%= msg %></div>
+        <%end%>
+      <%end%>
+      <div class="form-group row">
+        <%= form.label :name, for: "name", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label font-weight-bold"%>
+        <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+          <%= form.text_field :name,for: "name", class: "form-control", autofocus: true, autocomplete: "name", placeholder: "Enter name", required: true %>
+        </div>
+      </div>
+      
+      <div class="form-group row">
+        <%= form.label :email, for: "email", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label font-weight-bold"%>
+        <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+          <%= form.email_field :email,for: "email", class: "form-control", autofocus: true, autocomplete: "email", placeholder: "Enter Email ID", required: true %>
+        </div>
+      </div>
+    
+      <div class="row">
+        <div class="col-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <%= form.label :dob, 'D.O.B',for: "dob", class:"col-12 col-sm-3 col-md-3 col-lg-4 col col-form-label font-weight-bold"%>
+            <div class="col-12 col-sm-9 col-md-9 col-lg-8">
+              <div class="input-group date" id="datepicker1" data-target="#datepicker1" data-toggle="datetimepicker" data-target-input="nearest">
+                <%= form.text_field :dob, for: "dob", class:"form-control datetimepicker-input", value: (@user.dob.blank? ? "" : @user.dob.strftime("%d/%m/%Y")), placeholder: "dd/mm/yyyy", required: true %>
+                <div class="input-group-append">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>  
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-12 col-lg-6">
+          <div class="form-group row">
+            <%= form.label :mobile, for: "Mobile Number", class:"col-12 col-sm-3 col-md-3 col-lg-3 col-form-label font-weight-bold"%>
+            <div class="col-12 col-sm-9 col-md-9 col-lg-9">
+              <%= form.text_field :mobile, class: "form-control", placeholder: "Enter 10 digit mobile no", required: true %>  
+            </div>
+          </div>
+        </div>
+      </div>
+      <% unless["edit"].include?(params[:action])%>
+        <div class="form-group row">
+          <%= form.label :password, for: "password", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label font-weight-bold" %>
+          <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+            <%= form.password_field :password, for: "password", class: "form-control", autocomplete: "current-password", placeholder: "Enter Password", required: true %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <%= form.label :confirm_password, for: "password", class:"col-12 col-sm-3 col-md-3 col-lg-2 col-form-label font-weight-bold" %>
+          <div class="col-12 col-sm-9 col-md-9 col-lg-10">
+            <%= form.password_field :conform_password, for: "confirm_password", class: "form-control", autocomplete: "current-password", placeholder: "Repeat Password", required: true %>
+          </div>
+        </div>
+      <% end %>
+      <br />
+      <div class="row align-items-center">
+        <div class="col-7 text-left">
+          <% if ["new"].include?(params[:action]) && !current_user.present? %>
+            <div class="col-12"><p class="reg-text text-left font-weight-bold">Already a member?</p></div>
+            <div class="col-12"><%= link_to "SIGN IN", new_session_path, class: "btn btn-success btn-md font-weight-bold" %></div>
+          <% end %>
+        </div>
+        <div class="col-5 text-right">
+          <% if["edit"].include?(params[:action])%>
+            <%= form.submit "UPDATE", class:"btn btn-success btn-lg font-weight-bold" %>
+          <% else %>
+            <%= form.submit "SIGN UP", class:"btn btn-primary btn-lg font-weight-bold" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div> 
+<% end %>

@@ -110,6 +110,7 @@ GEM
       carrierwave (~> 2.0)
     childprocess (3.0.0)
     concurrent-ruby (1.1.6)
+    connection_pool (2.2.3)
     crass (1.0.6)
     diff-lcs (1.4.4)
     erubi (1.9.0)
@@ -130,6 +131,10 @@ GEM
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jmespath (1.4.0)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -207,6 +212,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.2.1)
     regexp_parser (1.7.1)
     rspec-core (3.9.2)
       rspec-support (~> 3.9.3)
@@ -243,6 +249,10 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sidekiq (6.1.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -305,7 +315,9 @@ DEPENDENCIES
   carrierwave-aws
   font-awesome-rails
   jbuilder (~> 2.7)
+  letter_opener (~> 1.7)
   listen (~> 3.2)
+  mini_magick (~> 4.10, >= 4.10.1)
   pg (>= 0.18, < 2.0)
   prawn
   puma (~> 4.1)
@@ -313,6 +325,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (>= 6)
   selenium-webdriver
+  sidekiq (~> 6.0, >= 6.0.7)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

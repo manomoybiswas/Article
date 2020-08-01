@@ -25,9 +25,11 @@
   margin: 0;
 }
 .action-row{
-  height: 35px;
-  padding: 8px 15px 7px;
-  margin-bottom: 15px;
+  margin: 0;
+  border-bottom: 1px solid rgba(120,130,140,.13);
+}
+.action-row:last-child{
+  border-bottom: 0;
 }
 .comment-count{
   padding-right: 10px;
@@ -53,7 +55,7 @@
   background-color: rgba(147, 148, 155, 0.418);
   min-height: calc(100vh - 55px - 30px);
   margin-top: -10px;
-  padding: 5px 15px;
+  padding: 0 15px;
   h3{
     line-height: 30px;
   }
@@ -61,11 +63,20 @@
 .overview-header{
   margin-bottom: 30px;
   height: 60px;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 .page-title{
   font-size: 18px;
   font-weight: bold;
+}
+.page-time, span{
+  font-size: 16px;
+  color: #848a96;
+  margin-top: -5px;
+  .fa-calendar{
+    font-size: 28px;
+    margin-right: 5px;
+  }
 }
 .white-box {
   background: #fff;
@@ -101,21 +112,21 @@
 .comment-center {
   margin: 0 -25px;
   .comment-body {
-    border-bottom: 1px solid rgba(120,130,140,.13);
     display: table;
     width: 100%;
     height: 172px;
     padding: 12px 25px;
   }
-  .comment-body:nth-child(3){
-    border-bottom: 0;
-  }
   .post-img{
-    width: 120px;
+      width: 100px;
     img{
-      height: 120px;
+      height: 100px;
+    }
+    .article-image{
+      width: 150px;
     }
   }
+
   .user-img{
     width: 60px;
   }
@@ -134,7 +145,7 @@
     display: table-cell;
     padding-left: 15px;
     vertical-align: top;
-    h5{
+    a h5{
       height: 29px;
       display: block;
       display: -webkit-box;
@@ -173,6 +184,12 @@ white-box .box-title {
   font-weight: 500;
   text-transform: uppercase;
   font-size: 16px;
+}
+
+.commimg-soon{
+  padding-top: calc(((100vh - 55px - 30px) / 2) - 20px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (min-width: 576px){
@@ -268,7 +285,28 @@ white-box .box-title {
     color: #0ec4d1;
     
   }
+  .overview-header{
+    height: 60px;
+    padding-top: 20px;
+  }
+  .comment-center{
+    .post-img{
+        width: 120px;
+      img{
+        height: 120px;
+      }
+      .article-image{
+        width: 200px;
+      }
+    }
+  }
 }
 @media screen and (min-width: 992px){
-
+  .comment-center{
+    .post-img {
+      .article-image{
+        width: 230px;
+      }
+    }
+  }
 }

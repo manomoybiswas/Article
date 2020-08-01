@@ -1,0 +1,6 @@
+:concurrency: 2
+:queue:
+  - notification
+  - mailers
+  - default
+  - recurring

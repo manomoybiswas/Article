@@ -59,7 +59,6 @@ class PostsController < ApplicationController
   end
 
   def show
-    
     @comment = Comment.new
     @comment.post_id = @post.id
     @comments = @post.comments.order("id DESC")
@@ -73,6 +72,14 @@ class PostsController < ApplicationController
       redirect_to posts_path, flash:{success: 'updated'}
     else
       render 'edit'
+    end
+  end
+
+  def refresh_comment
+    @post = Post.find(params[:id])
+    @comments = @post.comments.order("id DESC")
+    respond_to do |format|
+      format.js
     end
   end
 

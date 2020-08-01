@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string  :name,           null: false, limit: 30
       t.string  :email,          null: false, limit: 30
       t.string  :mobile,         null: false, limit: 14
+      t.date    :dob,            null: false
       t.boolean :admin,          default: false
       t.string  :avater
       t.string  :password_digest, null: false

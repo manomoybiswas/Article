@@ -11,12 +11,12 @@ class SessionsController < ApplicationController
     end
     
     if user
-      login(@user.id)
-      if @user.admin
-        redirect_to overview_path, flash: { success: "login Successful" }
+      if params[:remember_me]
+        login_with_remember_me(@user)
       else
-        redirect_to root_path, flash: { success: "login Successful" }
+        login(@user)
       end
+      redirect_to root_path, flash: { success: "login Successful" }
     else
       render "new", flash: { danger: "Invalid Credential" }
     end

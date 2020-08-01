@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  require "sidekiq/web"
+
   root "home#index"
   get :overview, "home/overview"
-  resources :users
+  get :about_us, "home/about_us"
+  get :contact_us, "home/contact_us"
+  resources :users do
+  end
   resources :sessions
   resources :posts do
     resources :comments, only: [:create, :index, :new]
@@ -9,6 +14,7 @@ Rails.application.routes.draw do
       put :like
     end
     collection do
+      get :refresh_comment
       get :search
       get :print_pdf
       get :filtered_posts
@@ -20,5 +26,8 @@ Rails.application.routes.draw do
     end
   end
   resources :categories
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :change_passwords
+  resources :password_resets
+
+  mount Sidekiq::Web, at: "/sidekiq"
 end

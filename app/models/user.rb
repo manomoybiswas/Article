@@ -14,7 +14,23 @@ class User < ApplicationRecord
   validates :name, :email, length: { in: 3..30 }
   validates :mobile, length: { is: 10}, format: {with: VALID_PHONE_REGEX}
   validates :email, length: { in: 8..30 },format: {with: VALID_EMAIL_REGEX}
-  validates :password, length: { minimum: 5 }
-  validates_presence_of :name, :email, :mobile, :password
+  validates :password, length: { minimum: 5 }, on: :create
+  validates_presence_of :name, :email, :mobile
+  validates_presence_of :password, on: :create
   validates_uniqueness_of :email, :mobile, case_sensitive: false
+
+  before_create { generate_token(:auth_token) }
+
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    ResetPasswordWorker.perform_async(self.id)
+  end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
 end

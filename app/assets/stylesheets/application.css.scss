@@ -6,8 +6,11 @@
 @import "/*";
 @import "bootstrap";
 @import "font-awesome";
+@import "./home.scss";
 @import "./users.scss";
 @import "./posts.scss";
+@import "./mailer.scss";
+@import "./comments.scss";
 
 *{
   padding: 0;
@@ -87,6 +90,18 @@ a, a:hover{
 }
 .dropdown{
   z-index: 999;
+}
+.profile-circle{
+  border-radius: 50%;
+}
+.blank-circle{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.login-name{
+  font-size: 16px;
+  font-weight: bolder;;
 }
 .banner{
   background: url("banner.jpg") no-repeat right top/cover ;
@@ -175,6 +190,7 @@ a, a:hover{
 .page-wrapper{
   width: 100%;
   padding-top: 20px;
+  min-height: calc(100vh - 50px - 45px - 30px);
 }
 .p-t-0{
   padding-top: 0;
@@ -223,10 +239,11 @@ a.morelink {
 }
 .mobile-dashboard-menu{
   display: block;
-  padding: 10px 0;
-  margin: 0 15px;
+  padding: 10px 10px;
+  margin: 0;
   border-bottom: 2px solid;
   height: 55px;
+  background-color: #000000c4;
   .create-btn{
     height: 35px;
     font-size: 18px;
@@ -236,9 +253,15 @@ a.morelink {
   }
 }
 .work-area{
-  margin: 0 15px;
   padding: 10px 0;
   height: calc(100vh - 50px - 45px - 55px - 30px);
+  margin: 0 auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.work-area::-webkit-scrollbar {
+  display: none;
 }
 .copyright{
   margin: 0;
@@ -342,6 +365,9 @@ a.morelink {
   .logout-menu{
     top: 55px;
   }
+  .page-wrapper{
+    min-height: calc(100vh - 55px - 30px);
+  }
   .wrapper{
     width: calc(100vw - 300px);
   }
@@ -372,8 +398,8 @@ a.morelink {
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
     box-shadow: 0px 10px 10px 3px rgba(0, 0, 0, 0.5);
-    padding: 10px 0 0 40px;
-    margin: 20px 0 0 15px;
+    padding: 15px 0 0 40px;
+    margin: 25px 0 0 15px;
     background-color: #ffffff;
     height: 60px;
     background-image: linear-gradient(to right, #DD5E89 0%, #F7BB97 51%, #DD5E89 100%);
@@ -412,11 +438,28 @@ a.morelink {
     background-color: #d87c25;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
+  .btm-0{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    .change-password{
+      padding: 6px 15px;
+      border-top: 1px solid #afaeae;
+      a{
+        font-size: 16px;
+        color: #afaeae;
+      }
+      a:hover{
+        color: #ffffff;
+      }
+    }
+  }
   .work-area{
     width: calc(100vw - 300px);
     height: calc(100vh - 55px - 30px);
     margin: 0 auto 15px;
-    padding-top: 10px;
+    padding-top: 0;
     float: right;
     overflow-y: scroll;
     scrollbar-width: none;

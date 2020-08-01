@@ -1,9 +1,13 @@
 module SessionsHelper
-  def login(user_id)
-    session[:user_id] = user_id
+  def login(user)
+    cookies[:auth_token] = user.auth_token
+  end
+  
+  def login_with_remember_me(user)
+    cookies.permanent[:auth_token] = user.auth_token
   end
 
   def logout
-    session[:user_id] = nil
+    cookies.delete(:auth_token)
   end
 end

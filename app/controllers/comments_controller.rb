@@ -1,8 +1,16 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user! , only: [:create, :destroy, :edit, :comment_like, :update]
   before_action :set_comment, only: [:destroy, :edit, :update]
-  # respond_to :js, :json, :html
-
+  
+  def comment_like
+    @comment = Comment.find(params[:id])
+    if !current_user.liked? @comment
+      @comment.liked_by current_user
+    elsif current_user.liked? @comment
+      @comment.unliked_by current_user
+    end
+  end
+  
   def create
     @comment = Comment.new(comments_params)
     @comment.user_id = current_user.id
@@ -21,14 +29,7 @@ class CommentsController < ApplicationController
     render layout: "dashboard"
   end
 
-  def comment_like
-    @comment = Comment.find(params[:id])
-    if !current_user.liked? @comment
-      @comment.liked_by current_user
-    elsif current_user.liked? @comment
-      @comment.unliked_by current_user
-    end
-  end
+  
 
   def update
     return unless current_user.admin || @comment.user_id == current_user.id

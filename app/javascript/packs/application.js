@@ -9,21 +9,15 @@ require("turbolinks")
 require("@rails/activestorage").start()
 require("channels")
 require("bootstrap")
+require("packs/home")
+require("packs/user")
+require("packs/comment")
 
-
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
 $(()=>$(".hide").fadeOut(4000));
 
 $(document).ready(function() {
 	var showChar = 130;
 	var ellipsestext = "...";
-	// var moretext = "more";
-	// var lesstext = "less";
   
   $('.more').each(function() {
 		var content = $(this).html();
@@ -31,10 +25,8 @@ $(document).ready(function() {
 		if(content.length > showChar) {
 
 			var c = content.substr(0, showChar);
-			// var h = content.substr(showChar-1, content.length - showChar);
 
 			var html = c + '<span class="moreellipses">' + ellipsestext + '</span>'
-				// <span class="morecontent"><span>'+ h +'</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
 
       $(this).html(html);
 		}
@@ -42,5 +34,35 @@ $(document).ready(function() {
   
   $('#filters').on('change', function() {
     this.form.submit();
-  });
+	});
+	
+	setInterval(function(){
+		var today = new Date();
+		var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+];
+	  var I = today.getHours();
+	  var M = today.getMinutes();
+		var S = today.getSeconds();
+		var d = today.getDate();
+		var b = today.getMonth();
+		var Y = today.getFullYear();
+		
+	 if(S<10){
+			 S = "0"+S;
+	 }
+	 if (M < 10) {
+			M = "0" + M;
+	}
+	if (I > 12 && I<=24){ 
+		I -= 12; 
+		p = "PM"
+	}
+	else if (I >= 1 && I< 12){ 
+		I = "0" + I;
+		p = "AM"
+	}
+	else{p = "PM"}
+	$(".timer").text(d + " " + monthNames[b] + ", " + Y + " " + I + ":" + M + ":" + S + " " + p);
+	}, 1000);
 });

@@ -1,116 +1,108 @@
-<section class="overview-wrapper">
-  <div class="row bg-light overview-header">
-    <div class="col-12 text-left">
-      <h4 class="page-title">DASHBOARD</h4> 
-    </div>
-  </div>
-                
-  <div class="row justify-content-center">
-    <% if current_user && current_user.admin %>
-      <div class="col-lg-3 col-md-6 col-12">
-        <div class="white-box analytics-info">
-          <h3 class="box-title">USERS</h3>
-          <div class="div-inline">
-            <div class="overview-icon"><i class="fa fa-users text-primary"></i></div>
-            <div class="count text-right">
-              <span class="counter text-primary"><%= user_count %></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 col-12">
-        <div class="white-box">
-          <h3 class="box-title">CATEGORIES</h3>
-          <div class="div-inline">
-            <div class="overview-icon"><i class="fa fa-tags text-warning"></i></div>
-            <div class="count text-right">
-              <span class="counter text-warning"><%= category_count %></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
+<div class="row justify-content-center">
+  <% if current_user && current_user.admin %>
     <div class="col-lg-3 col-md-6 col-12">
-      <div class="white-box">
-        <h3 class="box-title">POSTS</h3>
+      <div class="white-box analytics-info">
+        <h3 class="box-title">USERS</h3>
         <div class="div-inline">
-          <div class="overview-icon"><i class="fa fa-newspaper-o text-danger"></i></div>
+          <div class="overview-icon"><i class="fa fa-users text-primary"></i></div>
           <div class="count text-right">
-            <span class="counter text-danger"><%= post_count %></span>
+            <span class="counter text-primary"><%= user_count %></span>
           </div>
         </div>
       </div>
     </div>
     <div class="col-lg-3 col-md-6 col-12">
       <div class="white-box">
-        <h3 class="box-title">COMMENTS</h3>
+        <h3 class="box-title">CATEGORIES</h3>
         <div class="div-inline">
-          <div class="overview-icon"><i class="fa fa-comments text-success"></i></div>
+          <div class="overview-icon"><i class="fa fa-tags text-warning"></i></div>
           <div class="count text-right">
-            <span class="counter text-success"><%= comment_count %></span>
+            <span class="counter text-warning"><%= category_count %></span>
           </div>
         </div>
       </div>
     </div>
+  <% end %>
+  <div class="col-lg-3 col-md-6 col-12">
+    <div class="white-box">
+      <h3 class="box-title">POSTS</h3>
+      <div class="div-inline">
+        <div class="overview-icon"><i class="fa fa-newspaper-o text-danger"></i></div>
+        <div class="count text-right">
+          <span class="counter text-danger"><%= post_count %></span>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="col-lg-3 col-md-6 col-12">
+    <div class="white-box">
+      <h3 class="box-title">COMMENTS</h3>
+      <div class="div-inline">
+        <div class="overview-icon"><i class="fa fa-comments text-success"></i></div>
+        <div class="count text-right">
+          <span class="counter text-success"><%= comment_count %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-6 col-12">
-      <div class="white-box">
-        <h3 class="box-title">Recent Posts</h3>
-        <div class="comment-center p-t-10">
-          <% if @posts.present? %>
-            <% @posts.each do |post| %>
-              <div class="comment-body">
-                <div class="post-img"> 
-                  <%= image_tag post.image.url, class: "img-circle", alt: "image#{post.id}" %>
-                </div>
-                <div class="mail-contnet">
-                  <h5><%= post.post_name %></h5>
-                  <span class="time"><%= DateTime.parse(post.created_at.to_s).strftime("%I:%M %p %d %b,%Y") %></span>
-                  <br />
-                  <span class="mail-desc"><%= post.description %></span>
-                </div>
+<div class="row">
+  <div class="col-md-6 col-12">
+    <div class="white-box">
+      <h3 class="box-title">Recent Posts</h3>
+      <div class="comment-center p-t-10">
+        <% if @posts.present? %>
+          <% @posts.each do |post| %>
+            <div class="comment-body">
+              <div class="post-img"> 
+                <%= image_tag post.image.url, class: "img-circle", alt: "image#{post.id}" %>
               </div>
-            <% end %>
-          <% else %>
-              <div class="comment-body">
-                <h5 class="text-center">No post availavle</h5>
+              <div class="mail-contnet">
+                <h5><%= post.post_name %></h5>
+                <span class="time"><%= DateTime.parse(post.created_at.to_s).strftime("%I:%M %p %d %b,%Y") %></span>
+                <br />
+                <span class="mail-desc"><%= post.description %></span>
               </div>
+            </div>  
           <% end %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-12">
-      <div class="white-box">
-        <h3 class="box-title">Recent comments</h3>
-        <div class="comment-center p-t-10">
-          <% if @comments.present? %>
-            <% @comments.each do |comment| %>
-              <div class="comment-body">
-                <div class="user-img"> 
-                  <% if comment.user.avater.present? %>
-                    <%= image_tag comment.user.avater.url, class: "img-circle", alt: "image#{comment.id}" %>
-                  <% else %>
-                    <%= image_tag "dummy.jpg", class: "img-circle", alt: "image#{comment.id}" %>
-                  <% end %>
-                </div>
-                <div class="mail-contnet">
-                  <h5><%= comment.comment_title %></h5>
-                  <span class="time">By <%= comment.user.name %>, <%= DateTime.parse(comment.created_at.to_s).strftime("%I:%M %p %d %b,%Y") %></span>
-                  <br />
-                  <span class="mail-desc"><%= comment.comment_body %></span>
-                </div>
-              </div>
-            <% end %>
-          <% else %>
-              <div class="comment-body">
-                <h5 class="text-center">No comment availavle</h5>
-              </div>
-          <% end %>
-        </div>
+        <% else %>
+            <div class="comment-body">
+              <h5 class="text-center">No post availavle</h5>
+            </div>
+        <% end %>
       </div>
     </div>
   </div>
-</section>
+  <div class="col-md-6 col-12">
+    <div class="white-box">
+      <h3 class="box-title">Recent comments</h3>
+      <div class="comment-center p-t-10">
+        <% if @comments.present? %>
+          <% @comments.each do |comment| %>
+            <div class="comment-body">
+              <div class="user-img"> 
+                <% if comment.user.avater.present? %>
+                  <%= image_tag comment.user.avater.url, class: "img-circle", alt: "image#{comment.id}" %>
+                <% else %>
+                  <%= image_tag "dummy.jpg", class: "img-circle", alt: "image#{comment.id}" %>
+                <% end %>
+              </div>
+              <div class="mail-contnet">
+                <h5><%= comment.comment_title %></h5>
+                <span class="time">By <%= comment.user.name %>, <%= DateTime.parse(comment.created_at.to_s).strftime("%I:%M %p %d %b,%Y") %></span>
+                <br />
+                <span class="mail-desc"><%= comment.comment_body %></span>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+            <div class="comment-body">
+              <h5 class="text-center">No comment availavle</h5>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
                 

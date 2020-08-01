@@ -20,7 +20,7 @@
                   <div class="col-7 col-md-5 col-lg-4 text-right">
                     <%=form_tag(root_path, action:"index", method: :get) do %>
                       <div class="form-group row">
-                        <% filters=["Liked", "Non liked"]%>
+                        <% filters=["Liked"]%>
                         <div class="fa fa-filter col-1 text-center"></div>
                         <div class="col-10 text-right">
                           <%= select_tag(:filters, options_for_select(filters, params[:filters]), prompt:"All", class:"form-control custom-select d-block w-100 text-center") %>

@@ -4,8 +4,11 @@ class PosterUploader< CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  if Rails.env.development? || Rails.env.test?
+    storage :file
+  else
+    storage :aws
+  end
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -41,7 +44,9 @@ class PosterUploader< CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    id = 0
+    id = Post.last.id if Post.last.present?
+    @name ||= "DOC_POST_#{id  + 1}#{DateTime.now.strftime("%d%m%Y%I%M%S")}.#{file.extension}" if original_filename.present?
+  end
 end

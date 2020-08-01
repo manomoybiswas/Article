@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-12">
       <%= link_to overview_path, class: "dashboard-link" do%>
-        <p class="dashboard-item">
+        <p class="dashboard-item menu-1">
           <i class="fa fa-pie-chart"></i>
           <span class="dashboard-item-text">Overview</span>
         </p>
@@ -19,7 +19,7 @@
     <% if current_user.admin %>
       <div class="col-12">
         <%= link_to users_path, class: "dashboard-link" do%>
-          <p class="dashboard-item">
+          <p class="dashboard-item menu-2">
           <i class="fa fa-users"></i>
           <span class="dashboard-item-text">Users</span>
         </p>
@@ -27,7 +27,7 @@
       </div>
       <div class="col-12">
         <%= link_to categories_path, class: "dashboard-link" do%>
-          <p class="dashboard-item">
+          <p class="dashboard-item menu-3">
             <i class="fa fa-tag"></i>
             <span class="dashboard-item-text">Category</span>
           </p>
@@ -36,7 +36,7 @@
     <% end %>
     <div class="col-12">
       <%= link_to posts_path, class: "dashboard-link" do %>
-        <p class="dashboard-item"> 
+        <p class="dashboard-item menu-4"> 
           <i class="fa fa-newspaper-o"></i>
           <span class="dashboard-item-text">Articles</span>
         </p>
@@ -44,11 +44,16 @@
     </div>
     <div class="col-12">
       <%= link_to user_path(current_user.id), class: "dashboard-link" do %>
-        <p class="dashboard-item">
+        <p class="dashboard-item menu-5">
           <i class="fa fa-user"></i>
           <span class="dashboard-item-text">Profile</span>
         </p>
       <% end %>
+    </div>
+    <div class="btm-0">
+      <div class="change-password text-center">
+        <%= link_to "Change password", new_change_password_path %>
+      </div>
     </div>
   </div>
 </section>
@@ -110,6 +115,16 @@
   </div>
 </section>
 <section class="work-area">
-  <%= yield %>
+  <div class="overview-wrapper">
+    <div class="row bg-light overview-header">
+      <div class="col-6 text-left">
+        <h4 class="page-title"></h4> 
+      </div>
+      <div class="col-6 text-right">
+        <h4 class="page-time"><i class="fa fa-calendar"></i> <span class="timer"></span></h4> 
+      </div>
+    </div>
+    <%= yield %>
+  </div>
 </section>
 
