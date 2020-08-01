@@ -18,6 +18,5 @@ test:
 production:
   <<: *default
   database: article_production
-  username: Article
+  username: article
   password: <%= ENV['ARTICLE_DATABASE_PASSWORD'] %>
-  url: <%= ENV['DATABASE_URL'] %>
