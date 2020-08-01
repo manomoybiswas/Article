@@ -44,14 +44,14 @@ class UsersController < ApplicationController
       else
         render "edit", flash: { danger: "Something went wrong"}
       end
-    elsif current_user.admin || @user.id == current_user.id
+    elsif @user.id == current_user.id
       @user.name = user_params[:name] if user_params[:name]
       @user.dob = user_params[:dob] if user_params[:dob]
       @user.mobile = user_params[:mobile] if user_params[:mobile]
       @user.avater = user_params[:avater] if user_params[:avater].present?
       @user.password = user_params[:password] if user_params[:password].present?
       @user.confirm_password = user_params[:confirm_password] if user_params[:confirm_password].present?
-      redirect_to user_path(@user), flash: { success: "Profile Updated" } if @user.update(user_params)
+      redirect_to user_path(@user), flash: { success: "Profile Updated" } if @user.save
     end
   end  
 

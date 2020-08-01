@@ -13,7 +13,7 @@ class Post < ApplicationRecord
 
   scope :filtered_by_category, -> (id) { where(category_id: id)}
   scope :find_post, -> (user) { where(user_id: user.id).includes(:category, :comments)}
-  scope :search, -> (query) { where("post_name LIKE ?", "%#{query}%")}
+  scope :search, -> (query) { where("lower(post_name) LIKE ?", "%#{query.downcase}%")}
 
   def self.filter(id)
     if id == "0" || id == "" || id == nil
